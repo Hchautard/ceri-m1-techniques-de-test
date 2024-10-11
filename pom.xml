@@ -5,53 +5,67 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   
-   <name>Pokemon test project</name>
-    <description>Projet Maven avec JUnit et Mockito.</description>
+  <name>Pokemon test project</name>
+  <description>Projet Maven avec JUnit 5 et Mockito.</description>
   
-    <!-- Définition des cycles de vie : build et tests -->
-    <build>
-        <plugins>
-            <!-- Plugin pour compiler le projet -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source> <!-- Version de Java source -->
-                    <target>1.8</target> <!-- Version de Java cible -->
-                </configuration>
-            </plugin>
+  <!-- Définition des cycles de vie : build et tests -->
+  <build>
+    <plugins>
+      <!-- Plugin pour compiler le projet -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source> <!-- Version de Java source -->
+          <target>1.8</target> <!-- Version de Java cible -->
+        </configuration>
+      </plugin>
 
-            <!-- Plugin pour exécuter les tests avec Surefire -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include> <!-- Inclut les classes de tests -->
-                    </includes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+      <!-- Plugin pour exécuter les tests avec Surefire -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version> <!-- Utiliser une version compatible avec JUnit 5 -->
+        <configuration>
+          <includes>
+            <include>**/*Test.java</include> <!-- Inclut les classes de tests -->
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
-    <!-- Dépendances du projet -->
-    <dependencies>
-        <!-- JUnit pour les tests unitaires -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
+  <!-- Dépendances du projet -->
+ <dependencies>
+    <!-- JUnit 5 pour les tests unitaires -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.7.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.7.0</version>
+      <scope>test</scope>
+    </dependency>
 
-        <!-- Mockito pour les mocks -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.11.2</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <!-- Mockito pour les mocks -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>4.0.0</version> <!-- Mise à jour vers la version 4.x -->
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Dépendance pour Mockito Inline (permet de mocker des classes finales et méthodes finales) -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>4.0.0</version>
+      <scope>test</scope>
+    </dependency>
+</dependencies>
 </project>

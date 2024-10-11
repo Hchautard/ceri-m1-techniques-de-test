@@ -1,0 +1,112 @@
+-------------------------------------------------------------------------------
+Test set: fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.207 s <<< FAILURE! - in fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest
+fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.testCreateTrainerWithValorTeam  Time elapsed: 0.092 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class fr.univavignon.pokedex.api.PokemonTrainer.
+
+If you're not sure why you're getting this error, please report to the mailing list.
+
+
+Java               : 19
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 19.0.1+10-21
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 19.0.1+10-21
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class fr.univavignon.pokedex.api.PokemonTrainer]
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class fr.univavignon.pokedex.api.PokemonTrainer]
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+
+fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.testCreateTrainerWithInstinctTeam  Time elapsed: 0.039 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class fr.univavignon.pokedex.api.PokemonTrainer.
+
+If you're not sure why you're getting this error, please report to the mailing list.
+
+
+Java               : 19
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 19.0.1+10-21
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 19.0.1+10-21
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class fr.univavignon.pokedex.api.PokemonTrainer]
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class fr.univavignon.pokedex.api.PokemonTrainer]
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+
+fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.testCreateTrainerIntegration  Time elapsed: 0.051 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Mockito cannot mock this class: class fr.univavignon.pokedex.api.PokemonTrainer.
+
+If you're not sure why you're getting this error, please report to the mailing list.
+
+
+Java               : 19
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 19.0.1+10-21
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 19.0.1+10-21
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+
+You are seeing this disclaimer because Mockito is configured to create inlined mocks.
+You can learn about inline mocks and their limitations under item #39 of the Mockito class javadoc.
+
+Underlying exception : org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class fr.univavignon.pokedex.api.PokemonTrainer]
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+Caused by: org.mockito.exceptions.base.MockitoException: Could not modify all classes [class java.lang.Object, class fr.univavignon.pokedex.api.PokemonTrainer]
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+Caused by: java.lang.IllegalStateException: 
+
+Byte Buddy could not instrument all classes within the mock's type hierarchy
+
+This problem should never occur for javac-compiled classes. This problem has been observed for classes that are:
+ - Compiled by older versions of scalac
+ - Classes that are part of the Android distribution
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 63
+	at fr.univavignon.pokedex.api.IPokemonTrainerFactoryTest.setUp(IPokemonTrainerFactoryTest.java:26)
+
