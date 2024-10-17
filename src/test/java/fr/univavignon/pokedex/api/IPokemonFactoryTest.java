@@ -12,30 +12,24 @@ public class IPokemonFactoryTest {
 
     @BeforeEach
     public void setUp() {
-        // Création d'un mock de l'interface IPokemonFactory
         pokemonFactory = mock(IPokemonFactory.class);
     }
 
     @Test
     public void testCreatePokemon() {
-        // Données pour créer un Pokémon
         int index = 1;
         int cp = 1500;
         int hp = 120;
         int dust = 2000;
         int candy = 50;
 
-        // Création du Pokémon mocké avec les valeurs passées en paramètre
         Pokemon mockPokemon = new Pokemon(index, "Pokemon #1", 50, 50, 50, cp, hp, dust, candy, 100.0);
 
-        // Comportement simulé pour la méthode createPokemon
         when(pokemonFactory.createPokemon(index, cp, hp, dust, candy))
                 .thenReturn(mockPokemon);
 
-        // Appel de la méthode createPokemon
         Pokemon createdPokemon = pokemonFactory.createPokemon(index, cp, hp, dust, candy);
 
-        // Vérification que l'objet renvoyé est bien celui attendu
         assertNotNull(createdPokemon, "Le Pokémon créé ne doit pas être nul");
         assertEquals(index, createdPokemon.getIndex(), "L'index du Pokémon ne correspond pas");
         assertEquals("Pokemon #1", createdPokemon.getName(), "Le nom du Pokémon ne correspond pas");
@@ -47,21 +41,139 @@ public class IPokemonFactoryTest {
 
     @Test
     public void testCreatePokemon_invalidData() {
-        // Données invalides pour créer un Pokémon
-        int index = -1; // Index invalide
-        int cp = -100;  // CP invalide (négatif)
-        int hp = -50;   // HP invalide (négatif)
-        int dust = -1000; // Dust invalide (négatif)
-        int candy = -10; // Candy invalide (négatif)
+        int index = -1; 
+        int cp = -100; 
+        int hp = -50;  
+        int dust = -1000;
+        int candy = -10; 
 
-        // Comportement simulé : lorsque les paramètres sont invalides, une exception est levée
         when(pokemonFactory.createPokemon(index, cp, hp, dust, candy))
                 .thenThrow(new IllegalArgumentException("Les paramètres sont invalides"));
 
-        // Test que l'exception est levée
         assertThrows(IllegalArgumentException.class, () -> {
             pokemonFactory.createPokemon(index, cp, hp, dust, candy);
         });
     }
+    
+    @Test
+    public void testCreatePokemon_maxValues() {
+        int index = 150;
+        int cp = Integer.MAX_VALUE;
+        int hp = Integer.MAX_VALUE;
+        int dust = Integer.MAX_VALUE;
+        int candy = Integer.MAX_VALUE;
+
+        Pokemon mockPokemon = new Pokemon(index, "Mewtwo", 100, 100, 100, cp, hp, dust, candy, 100.0);
+
+        when(pokemonFactory.createPokemon(index, cp, hp, dust, candy))
+                .thenReturn(mockPokemon);
+
+        Pokemon createdPokemon = pokemonFactory.createPokemon(index, cp, hp, dust, candy);
+
+        assertNotNull(createdPokemon, "Le Pokémon créé ne doit pas être nul");
+        assertEquals(index, createdPokemon.getIndex(), "L'index du Pokémon ne correspond pas");
+        assertEquals("Mewtwo", createdPokemon.getName(), "Le nom du Pokémon ne correspond pas");
+        assertEquals(cp, createdPokemon.getCp(), "Les CP du Pokémon ne correspondent pas");
+        assertEquals(hp, createdPokemon.getHp(), "Les HP du Pokémon ne correspondent pas");
+        assertEquals(dust, createdPokemon.getDust(), "La poussière ne correspond pas");
+        assertEquals(candy, createdPokemon.getCandy(), "Les bonbons ne correspondent pas");
+    }
+    
+    @Test
+    public void testCreatePokemon_zeroValues() {
+        int index = 10;
+        int cp = 0;
+        int hp = 0;
+        int dust = 0;
+        int candy = 0;
+
+        Pokemon mockPokemon = new Pokemon(index, "Mew", 10, 10, 10, cp, hp, dust, candy, 10.0);
+
+        when(pokemonFactory.createPokemon(index, cp, hp, dust, candy))
+                .thenReturn(mockPokemon);
+
+        Pokemon createdPokemon = pokemonFactory.createPokemon(index, cp, hp, dust, candy);
+
+        assertNotNull(createdPokemon, "Le Pokémon créé ne doit pas être nul");
+        assertEquals(index, createdPokemon.getIndex(), "L'index du Pokémon ne correspond pas");
+        assertEquals("Mew", createdPokemon.getName(), "Le nom du Pokémon ne correspond pas");
+        assertEquals(cp, createdPokemon.getCp(), "Les CP du Pokémon ne correspondent pas");
+        assertEquals(hp, createdPokemon.getHp(), "Les HP du Pokémon ne correspondent pas");
+        assertEquals(dust, createdPokemon.getDust(), "La poussière ne correspond pas");
+        assertEquals(candy, createdPokemon.getCandy(), "Les bonbons ne correspondent pas");
+    }
+
+    
+    @Test
+    public void testCreatePokemon_indexZero() {
+        int index = 0;
+        int cp = 100;
+        int hp = 100;
+        int dust = 500;
+        int candy = 10;
+
+        Pokemon mockPokemon = new Pokemon(index, "Bulbizarre", 49, 49, 49, cp, hp, dust, candy, 50.0);
+
+        when(pokemonFactory.createPokemon(index, cp, hp, dust, candy))
+                .thenReturn(mockPokemon);
+
+        Pokemon createdPokemon = pokemonFactory.createPokemon(index, cp, hp, dust, candy);
+
+        assertNotNull(createdPokemon, "Le Pokémon créé ne doit pas être nul");
+        assertEquals(index, createdPokemon.getIndex(), "L'index du Pokémon ne correspond pas");
+        assertEquals("Bulbizarre", createdPokemon.getName(), "Le nom du Pokémon ne correspond pas");
+        assertEquals(cp, createdPokemon.getCp(), "Les CP du Pokémon ne correspondent pas");
+        assertEquals(hp, createdPokemon.getHp(), "Les HP du Pokémon ne correspondent pas");
+        assertEquals(dust, createdPokemon.getDust(), "La poussière ne correspond pas");
+        assertEquals(candy, createdPokemon.getCandy(), "Les bonbons ne correspondent pas");
+    }
+
+    @Test
+    public void testCreatePokemon_sameValues() {
+        int index = 25;
+        int cp = 100;
+        int hp = 100;
+        int dust = 100;
+        int candy = 100;
+
+        Pokemon mockPokemon = new Pokemon(index, "Pikachu", 35, 35, 35, cp, hp, dust, candy, 100.0);
+
+        when(pokemonFactory.createPokemon(index, cp, hp, dust, candy))
+                .thenReturn(mockPokemon);
+
+        Pokemon createdPokemon = pokemonFactory.createPokemon(index, cp, hp, dust, candy);
+
+        assertNotNull(createdPokemon, "Le Pokémon créé ne doit pas être nul");
+        assertEquals(index, createdPokemon.getIndex(), "L'index du Pokémon ne correspond pas");
+        assertEquals("Pikachu", createdPokemon.getName(), "Le nom du Pokémon ne correspond pas");
+        assertEquals(cp, createdPokemon.getCp(), "Les CP du Pokémon ne correspondent pas");
+        assertEquals(hp, createdPokemon.getHp(), "Les HP du Pokémon ne correspondent pas");
+        assertEquals(dust, createdPokemon.getDust(), "La poussière ne correspond pas");
+        assertEquals(candy, createdPokemon.getCandy(), "Les bonbons ne correspondent pas");
+    }
+
+    @Test
+    public void testCreatePokemon_nullValues() {
+        int index = 10;
+        int cp = 300;
+        int hp = 120;
+        int dust = 500;
+        int candy = 30;
+
+        // Assuming name is nullable, and it may still create the Pokémon.
+        Pokemon mockPokemon = new Pokemon(index, null, 10, 10, 10, cp, hp, dust, candy, 50.0);
+
+        when(pokemonFactory.createPokemon(index, cp, hp, dust, candy))
+                .thenReturn(mockPokemon);
+
+        Pokemon createdPokemon = pokemonFactory.createPokemon(index, cp, hp, dust, candy);
+
+        assertNotNull(createdPokemon, "Le Pokémon créé ne doit pas être nul");
+        assertNull(createdPokemon.getName(), "Le nom du Pokémon devrait être nul");
+        assertEquals(cp, createdPokemon.getCp(), "Les CP du Pokémon ne correspondent pas");
+        assertEquals(hp, createdPokemon.getHp(), "Les HP du Pokémon ne correspondent pas");
+    }
+
+
 }
 	
