@@ -35,3 +35,31 @@ Pour chaque rendu vous devez créer un tag à partir du commit qui correspond à
 Si vous ne spécifiez pas de tag, le dernier commit à la date-heure de la fin de séance sera celui considéré.
 
 [^1]: Si vous n’êtes vraiment pas à l’aise avec cet outil nous vous conseillons quand même vivement de vous y mettre.
+
+
+## Informations
+
+- **Nom** : Hugo Chautard
+- **Groupe** : M1 ILSEN Alternance
+
+## Badges
+
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Hchautard/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Hchautard/ceri-m1-techniques-de-test/tree/master)
+[![codecov](https://codecov.io/github/Hchautard/ceri-m1-techniques-de-test/graph/badge.svg?token=MJIDUN8QJ3)](https://codecov.io/github/Hchautard/ceri-m1-techniques-de-test)
+
+## Description
+
+Ce projet a pour but de mettre en œuvre différentes techniques de tests vues en cours. 
+Nous avons utilisé les technologies suivantes :
+
+- **Java** pour le langage principal du projet.
+- **Maven** pour la gestion des dépendances et la compilation.
+- **JUnit** pour l'exécution des tests unitaires.
+- **Mockito** pour les mocks et tests unitaires avancés.
+- **JaCoCo** pour la génération de la couverture de test.
+- **CircleCI** pour l'intégration continue.
+- **Codecov** pour le suivi de la couverture de test.
+
+## Choix techniques
+
+Ce projet adopte une approche de développement dirigée par les tests (TDD) pour assurer que chaque fonctionnalité est couverte par des tests dès sa conception. Nous utilisons Mockito pour simuler les dépendances et tester chaque composant indépendamment.
