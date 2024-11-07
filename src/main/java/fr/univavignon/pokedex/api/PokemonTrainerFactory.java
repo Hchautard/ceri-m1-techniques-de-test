@@ -16,7 +16,7 @@ public class PokemonTrainerFactory implements IPokemonTrainerFactory {
     @Override
     public PokemonTrainer createTrainer(String name, Team team, IPokedexFactory pokedexFactory) {
         // Create a new Pokedex instance using the provided PokedexFactory
-        IPokedex pokedex = pokedexFactory.createPokedex(new PokemonMetadataProvider(), new PokemonFactory());
+        IPokedex pokedex = pokedexFactory.createPokedex(new PokemonMetadataProvider(), new PokemonFactory(new PokemonMetadataProvider()));
         
         // Return a new PokemonTrainer instance with the given name, team, and created Pokedex
         return new PokemonTrainer(name, team, pokedex);
