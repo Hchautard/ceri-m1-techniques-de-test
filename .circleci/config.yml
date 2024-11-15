@@ -29,7 +29,8 @@ jobs:
       - run:
           name: Run Checkstyle
           command: mvn checkstyle:checkstyle
-          - store_artifacts:
+
+      - store_artifacts:
              path: target/site
              destination: checkstyle-report
 
