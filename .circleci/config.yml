@@ -25,7 +25,7 @@ jobs:
           name: Upload Coverage to Codecov
           command: |
             curl -s https://codecov.io/bash | bash -s -- -t $CODECOV_TOKEN
-			
+	
 	  - run:
 		  name: Run Checkstyle
 		  command: mvn checkstyle:checkstyle
