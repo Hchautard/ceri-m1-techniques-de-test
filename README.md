@@ -46,6 +46,7 @@ Si vous ne spécifiez pas de tag, le dernier commit à la date-heure de la fin d
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Hchautard/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Hchautard/ceri-m1-techniques-de-test/tree/master)
 [![codecov](https://codecov.io/github/Hchautard/ceri-m1-techniques-de-test/graph/badge.svg?token=MJIDUN8QJ3)](https://codecov.io/github/Hchautard/ceri-m1-techniques-de-test)
+[![Checkstyle](https://img.shields.io/badge/checkstyle-report-blue)](https://<votre-url-du-rapport>/checkstyle.html)
 
 ## Description
 
