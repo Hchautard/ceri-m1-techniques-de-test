@@ -2,7 +2,7 @@
 version: 2.1
 
 jobs:
-  build-and-test:
+  check:
     docker:
       - image: cimg/openjdk:11.0
 
@@ -35,7 +35,7 @@ jobs:
              destination: checkstyle-report
 
 workflows:
-	version: 2
-	  build-and-test:
-	    jobs:
-	      - check
+  version: 2
+  build-and-test:
+    jobs:
+      - check
