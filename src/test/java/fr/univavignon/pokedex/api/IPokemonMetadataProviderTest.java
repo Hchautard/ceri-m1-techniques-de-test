@@ -9,10 +9,12 @@ import org.junit.jupiter.api.Test;
 public class IPokemonMetadataProviderTest {
 	
 	private IPokemonMetadataProvider mockPokemonMetadataProvider;
+	private PokemonMetadataProvider pokemonMetadataProvider;
 	
 	@BeforeEach
     public void setUp() {
 		mockPokemonMetadataProvider = mock(IPokemonMetadataProvider.class);
+		pokemonMetadataProvider = new PokemonMetadataProvider();
     }
 	
 	@Test
@@ -113,5 +115,30 @@ public class IPokemonMetadataProviderTest {
 	        mockPokemonMetadataProvider.getPokemonMetadata(9999);
 	    });
 	}
+	
+
+    @Test
+    public void testGetPokemonMetadata_InvalidNegativeIndex() {
+        int invalidIndex = -1;
+
+        PokedexException exception = assertThrows(PokedexException.class, () -> {
+            pokemonMetadataProvider.getPokemonMetadata(invalidIndex);
+        });
+
+        assertEquals("Invalid Pokemon index: -1", exception.getMessage(),
+                "Exception message should indicate invalid index.");
+    }
+
+    @Test
+    public void testGetPokemonMetadata_IndexOutOfBounds() {
+        int invalidIndex = 9999; // Index out of bounds
+
+        PokedexException exception = assertThrows(PokedexException.class, () -> {
+            pokemonMetadataProvider.getPokemonMetadata(invalidIndex);
+        });
+
+        assertEquals("Invalid Pokemon index: 9999", exception.getMessage(),
+                "Exception message should indicate index is out of bounds.");
+    }
 
 }

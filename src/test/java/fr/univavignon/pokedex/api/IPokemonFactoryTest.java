@@ -173,6 +173,8 @@ public class IPokemonFactoryTest {
         assertEquals(cp, createdPokemon.getCp(), "Les CP du Pokémon ne correspondent pas");
         assertEquals(hp, createdPokemon.getHp(), "Les HP du Pokémon ne correspondent pas");
     }
+    
+    
 
 
 }
