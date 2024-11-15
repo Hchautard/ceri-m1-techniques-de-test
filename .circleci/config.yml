@@ -25,13 +25,13 @@ jobs:
           name: Upload Coverage to Codecov
           command: |
             curl -s https://codecov.io/bash | bash -s -- -t $CODECOV_TOKEN
-	
-	  - run:
-		  name: Run Checkstyle
-		  command: mvn checkstyle:checkstyle
-		  - store_artifacts:
-		     path: target/site
-			 destination: checkstyle-report
+
+      - run:
+          name: Run Checkstyle
+          command: mvn checkstyle:checkstyle
+          - store_artifacts:
+             path: target/site
+             destination: checkstyle-report
 
 workflows:
 	version: 2
