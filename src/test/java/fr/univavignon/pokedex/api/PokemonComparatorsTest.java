@@ -55,7 +55,6 @@ public class PokemonComparatorsTest {
         assertEquals(2000, pokemonList.get(2).getCp());
     }
 
-
     @Test
     public void testComparatorEquality() {
         Pokemon sameAsPokemon1 = new Pokemon(1, "Bulbasaur", 49, 49, 90, 1200, 100, 500, 50, 80.0);
