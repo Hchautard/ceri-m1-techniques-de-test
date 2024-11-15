@@ -1,98 +1,72 @@
 package fr.univavignon.pokedex.api;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class IPokedexFactoryTest {
 
-    // Mocks
     private IPokemonMetadataProvider metadataProviderMock;
     private IPokemonFactory pokemonFactoryMock;
-    private IPokedexFactory pokedexFactoryMock;
-    private IPokedex pokedexMock;
+    private IPokedexFactory pokedexFactory;
 
     @BeforeEach
     public void setUp() {
-        // Initialisation des mocks avec Mockito
+        // Initialisation des mocks
         metadataProviderMock = mock(IPokemonMetadataProvider.class);
         pokemonFactoryMock = mock(IPokemonFactory.class);
-        pokedexFactoryMock = mock(IPokedexFactory.class);
-        pokedexMock = mock(IPokedex.class);
-        
-        // Comportement attendu du mock de la factory
-        when(pokedexFactoryMock.createPokedex(metadataProviderMock, pokemonFactoryMock)).thenReturn(pokedexMock);
+        pokedexFactory = new PokedexFactory(); // Utilisation de la classe réelle
     }
 
     @Test
-    public void testCreatePokedex() {
-        // Appel de la méthode à tester
-        IPokedex pokedex = pokedexFactoryMock.createPokedex(metadataProviderMock, pokemonFactoryMock);
+    public void testCreatePokedexReturnsNonNullInstance() {
+        // Appel de la méthode réelle
+        IPokedex pokedex = pokedexFactory.createPokedex(metadataProviderMock, pokemonFactoryMock);
 
-        // Vérification que la méthode a bien été appelée
-        verify(pokedexFactoryMock).createPokedex(metadataProviderMock, pokemonFactoryMock);
-
-        // Vérification que l'objet retourné est bien une instance de IPokedex
-        assertNotNull(pokedex);
-        assertEquals(pokedexMock, pokedex);
+        // Vérification que le pokédex n'est pas nul
+        assertNotNull(pokedex, "Le pokédex créé ne doit pas être nul.");
+        assertTrue(pokedex instanceof Pokedex, "L'objet retourné doit être une instance de Pokedex.");
     }
 
     @Test
-    public void testCreatePokedexWithCorrectArguments() {
-        // Appel de la méthode à tester
-        IPokedex pokedex = pokedexFactoryMock.createPokedex(metadataProviderMock, pokemonFactoryMock);
+    public void testCreatePokedexWithValidArguments() {
+        // Appel de la méthode réelle
+        IPokedex pokedex = pokedexFactory.createPokedex(metadataProviderMock, pokemonFactoryMock);
 
-        // Vérification que createPokedex est appelée avec les bons paramètres
-        verify(pokedexFactoryMock).createPokedex(metadataProviderMock, pokemonFactoryMock);
-
-        // Test que le comportement est correct pour ces arguments
-        assertSame(pokedexMock, pokedex);
+        // Vérification que les mocks sont utilisés
+        assertNotNull(pokedex, "Le pokédex créé ne doit pas être nul.");
+        assertDoesNotThrow(() -> pokedexFactory.createPokedex(metadataProviderMock, pokemonFactoryMock), 
+                           "La création du pokédex ne doit pas lever d'exception.");
     }
 
     @Test
-    public void testCreatePokedexWhenExceptionThrown() {
-        // Simuler une exception lors de l'appel de createPokedex
-        when(pokedexFactoryMock.createPokedex(metadataProviderMock, pokemonFactoryMock))
-            .thenThrow(new RuntimeException("Factory error"));
+    public void testCreatePokedexAndAddPokemon() throws PokedexException {
+        // Création de l'instance réelle du pokédex
+        IPokedex pokedex = pokedexFactory.createPokedex(metadataProviderMock, pokemonFactoryMock);
 
-        // Vérification que l'exception est bien lancée
-        assertThrows(RuntimeException.class, () -> {
-            pokedexFactoryMock.createPokedex(metadataProviderMock, pokemonFactoryMock);
-        });
+        // Mock des métadonnées pour un Pokémon
+        when(metadataProviderMock.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0, "Bulbasaur", 49, 49, 90));
+        when(pokemonFactoryMock.createPokemon(0, 100, 100, 100, 100)).thenReturn(new Pokemon(0, "Bulbasaur", 49, 49, 90, 100, 100, 100, 100, 50.0));
+
+        // Ajout du Pokémon au pokédex
+        int index = pokedex.addPokemon(new Pokemon(0, "Bulbasaur", 49, 49, 90, 100, 100, 100, 100, 50.0));
+
+        // Vérification de l'index et de la taille du pokédex
+        assertEquals(0, index, "Le premier Pokémon ajouté devrait avoir l'index 0.");
+        assertEquals(1, pokedex.size(), "La taille du pokédex devrait être de 1 après l'ajout.");
     }
 
     @Test
-    public void testCreatePokedexReturnsNonNull() {
-        // Appel de la méthode à tester
-        IPokedex pokedex = pokedexFactoryMock.createPokedex(metadataProviderMock, pokemonFactoryMock);
+    public void testCreateMultiplePokedexInstances() {
+        // Création de deux pokédex via la factory
+        IPokedex pokedex1 = pokedexFactory.createPokedex(metadataProviderMock, pokemonFactoryMock);
+        IPokedex pokedex2 = pokedexFactory.createPokedex(metadataProviderMock, pokemonFactoryMock);
 
-        // Vérification que l'objet retourné est non nul
-        assertNotNull(pokedex);
-    }
-
-    @Test
-    public void testCreatePokedexReturnSameInstance() {
-        // Appel de la méthode à tester plusieurs fois
-        IPokedex pokedex1 = pokedexFactoryMock.createPokedex(metadataProviderMock, pokemonFactoryMock);
-        IPokedex pokedex2 = pokedexFactoryMock.createPokedex(metadataProviderMock, pokemonFactoryMock);
-
-        // Vérification que la même instance est retournée à chaque fois
-        assertSame(pokedex1, pokedex2);
-    }
-
-    @Test
-    public void testCreatePokedexMultipleTimes() {
-        // Vérification que createPokedex peut être appelée plusieurs fois sans problème
-        IPokedex pokedex1 = pokedexFactoryMock.createPokedex(metadataProviderMock, pokemonFactoryMock);
-        IPokedex pokedex2 = pokedexFactoryMock.createPokedex(metadataProviderMock, pokemonFactoryMock);
-
-        // Vérification que la méthode a été appelée deux fois
-        verify(pokedexFactoryMock, times(2)).createPokedex(metadataProviderMock, pokemonFactoryMock);
-
-        // Vérification que les deux appels retournent la même instance mockée
-        assertSame(pokedex1, pokedex2);
+        // Vérification que ce sont bien deux instances distinctes
+        assertNotNull(pokedex1, "Le premier pokédex ne doit pas être nul.");
+        assertNotNull(pokedex2, "Le second pokédex ne doit pas être nul.");
+        assertNotSame(pokedex1, pokedex2, "Chaque appel de createPokedex doit retourner une nouvelle instance.");
     }
 }
