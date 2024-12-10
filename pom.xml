@@ -69,7 +69,7 @@
           </execution>
         </executions>
         <configuration>
-          <configLocation>google_checks.xml</configLocation> 
+          <configLocation>checkstyle.xml</configLocation> 
           <encoding>UTF-8</encoding>
           <reportOutputDirectory>${project.build.directory}/checkstyle</reportOutputDirectory>
         </configuration>
