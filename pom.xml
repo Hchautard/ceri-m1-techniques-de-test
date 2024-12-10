@@ -72,6 +72,7 @@
           <configLocation>checkstyle.xml</configLocation> <!-- Ensure checkstyle.xml exists in the root of your repo -->
           <encoding>UTF-8</encoding>
           <consoleOutput>true</consoleOutput>
+          <reportOutputDirectory>${project.build.directory}/checkstyle</reportOutputDirectory>
         </configuration>
       </plugin>
 
