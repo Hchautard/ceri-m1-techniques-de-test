@@ -6,15 +6,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import fr.univavignon.pokedex.api.RocketPokemonFactory;
+
 public class PokemonFactoryTest {
 
     private IPokemonMetadataProvider metadataProviderMock;
     private PokemonFactory pokemonFactory;
+    private RocketPokemonFactory rocketFactory;
 
     @BeforeEach
     public void setUp() {
         metadataProviderMock = mock(IPokemonMetadataProvider.class);
         pokemonFactory = new PokemonFactory(metadataProviderMock);
+        rocketFactory = new RocketPokemonFactory();
     }
 
     @Test
@@ -106,6 +110,116 @@ public class PokemonFactoryTest {
         assertEquals(hp, createdPokemon.getHp(), "The Pokémon HP should match.");
         assertEquals(dust, createdPokemon.getDust(), "The Pokémon dust should match.");
         assertEquals(candy, createdPokemon.getCandy(), "The Pokémon candy should match.");
+    }
+
+    // Test with RocketPokemonFactory
+
+    @Test
+    public void testRocketCreatePokemonWithValidData() {
+        int index = 1;
+        int cp = 1500;
+        int hp = 120;
+        int dust = 2000;
+        int candy = 50;
+
+        Pokemon createdPokemon = rocketFactory.createPokemon(index, cp, hp, dust, candy);
+
+        assertNotNull(createdPokemon);
+        assertEquals(index, createdPokemon.getIndex());
+        assertEquals("Bulbasaur", createdPokemon.getName());
+        assertTrue(createdPokemon.getAttack() >= 0 && createdPokemon.getAttack() <= 100);
+        assertTrue(createdPokemon.getDefense() >= 0 && createdPokemon.getDefense() <= 100);
+        assertTrue(createdPokemon.getStamina() >= 0 && createdPokemon.getStamina() <= 100);
+        assertEquals(cp, createdPokemon.getCp());
+        assertEquals(hp, createdPokemon.getHp());
+        assertEquals(dust, createdPokemon.getDust());
+        assertEquals(candy, createdPokemon.getCandy());
+    }
+
+    @Test
+    public void testRocketCreatePokemonWithNegativeIndex() {
+        int index = -1;
+        int cp = 3000;
+        int hp = 150;
+        int dust = 20000;
+        int candy = 100;
+
+        Pokemon createdPokemon = rocketFactory.createPokemon(index, cp, hp, dust, candy);
+
+        assertNotNull(createdPokemon);
+        assertEquals(index, createdPokemon.getIndex());
+        assertEquals("Ash's Pikachu", createdPokemon.getName());
+        assertEquals(1000, createdPokemon.getAttack());
+        assertEquals(1000, createdPokemon.getDefense());
+        assertEquals(1000, createdPokemon.getStamina());
+    }
+
+    @Test
+    public void testRocketCreatePokemonWithUnknownIndex() {
+        int index = 999;
+        int cp = 500;
+        int hp = 60;
+        int dust = 1500;
+        int candy = 10;
+
+        Pokemon createdPokemon = rocketFactory.createPokemon(index, cp, hp, dust, candy);
+
+        assertNotNull(createdPokemon);
+        assertEquals("MISSINGNO", createdPokemon.getName());
+    }
+
+    @Test
+    public void testRocketCreatePokemonWithEdgeValues() {
+        int index = 1;
+        int cp = Integer.MAX_VALUE;
+        int hp = Integer.MAX_VALUE;
+        int dust = Integer.MAX_VALUE;
+        int candy = Integer.MAX_VALUE;
+
+        Pokemon createdPokemon = rocketFactory.createPokemon(index, cp, hp, dust, candy);
+
+        assertNotNull(createdPokemon);
+        assertEquals(cp, createdPokemon.getCp());
+        assertEquals(hp, createdPokemon.getHp());
+        assertEquals(dust, createdPokemon.getDust());
+        assertEquals(candy, createdPokemon.getCandy());
+    }
+
+    @Test
+    public void testRandomStatGenerationRange() {
+        int stat = RocketPokemonFactory.generateRandomStat();
+        assertTrue(stat >= 0 && stat <= 100, "The random stat should be in range 0-100.");
+    }
+
+    @Test
+    public void testUnmodifiableMapInRocketFactory() {
+        assertThrows(UnsupportedOperationException.class, () -> {
+            RocketPokemonFactory.index2name.put(100, "New Pokemon");
+        });
+    }
+
+    @Test
+    public void testMultipleRandomStatsAreDifferent() {
+        int stat1 = RocketPokemonFactory.generateRandomStat();
+        int stat2 = RocketPokemonFactory.generateRandomStat();
+        assertNotEquals(stat1, stat2, "Two random stats should be different.");
+    }
+
+    @Test
+    public void testRocketCreatePokemonWithZeroStats() {
+        int index = 1;
+        int cp = 0;
+        int hp = 0;
+        int dust = 0;
+        int candy = 0;
+
+        Pokemon createdPokemon = rocketFactory.createPokemon(index, cp, hp, dust, candy);
+
+        assertNotNull(createdPokemon);
+        assertEquals(cp, createdPokemon.getCp());
+        assertEquals(hp, createdPokemon.getHp());
+        assertEquals(dust, createdPokemon.getDust());
+        assertEquals(candy, createdPokemon.getCandy());
     }
 
 }
