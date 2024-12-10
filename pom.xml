@@ -71,7 +71,6 @@
         <configuration>
           <configLocation>checkstyle.xml</configLocation> 
           <encoding>UTF-8</encoding>
-          <reportOutputDirectory>${project.build.directory}/checkstyle</reportOutputDirectory>
         </configuration>
       </plugin>
 
@@ -121,6 +120,13 @@
       <artifactId>mockito-inline</artifactId>
       <version>4.0.0</version>
       <scope>test</scope>
+    </dependency>
+
+    <!-- Dépendance de la Team Rocket -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+      <version>4.0</version>
     </dependency>
 </dependencies>
 </project>
