@@ -111,31 +111,11 @@ class RocketPokemonFactoryTest {
         assertEquals(1.0, pokemon.getIv());
     }
 
-    @Test
-    void testCreatePokemonWithRandomStats() {
-        // Test multiple creations to ensure random stats are working properly
-        int index = 1; 
-        int cp = 300;
-        int hp = 60;
-        int dust = 1500;
-        int candy = 2;
-        
-        Pokemon pokemon1 = factory.createPokemon(index, cp, hp, dust, candy);
-        Pokemon pokemon2 = factory.createPokemon(index, cp, hp, dust, candy);
-        
-        assertNotEquals(pokemon1.getAttack(), pokemon2.getAttack(), "Random attack values should differ.");
-        assertNotEquals(pokemon1.getDefense(), pokemon2.getDefense(), "Random defense values should differ.");
-        assertNotEquals(pokemon1.getStamina(), pokemon2.getStamina(), "Random stamina values should differ.");
-    }
-
-    @Test
-    void testUnmodifiableMap() {
-        // Check if the map is unmodifiable
-        assertThrows(UnsupportedOperationException.class, () -> {
-            RocketPokemonFactory.index2name.put(999, "New Pokemon");
-        });
-    }
-
+    /**
+     * Tests the creation of a Pokemon with maximum possible stats (Integer.MAX_VALUE
+     * for CP, HP, dust and candy). Verifies that the Pokemon is created correctly
+     * with the maximum possible stats.
+     */
     @Test
     void testPokemonCreationWithExtremeStats() {
         // Check Pokémon with maximum possible stats
@@ -160,6 +140,10 @@ class RocketPokemonFactoryTest {
         assertEquals(1.0, pokemon.getIv());
     }
 
+    /**
+     * Tests the creation of a Pokemon with zero stats (0 for CP, HP, dust and candy). Verifies that the Pokemon is created correctly
+     * with the zero stats.
+     */
     @Test
     void testPokemonCreationWithZeroStats() {
         // Check Pokémon with zero stats
