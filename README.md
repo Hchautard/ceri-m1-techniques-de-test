@@ -1,3 +1,8 @@
+## Informations
+
+- **Nom** : Hugo Chautard
+- **Groupe** : M1 ILSEN Alternance
+
 # UCE Génie Logiciel Avancé : Techniques de tests
 
 ## Introduction
@@ -35,12 +40,6 @@ Pour chaque rendu vous devez créer un tag à partir du commit qui correspond à
 Si vous ne spécifiez pas de tag, le dernier commit à la date-heure de la fin de séance sera celui considéré.
 
 [^1]: Si vous n’êtes vraiment pas à l’aise avec cet outil nous vous conseillons quand même vivement de vous y mettre.
-
-
-## Informations
-
-- **Nom** : Hugo Chautard
-- **Groupe** : M1 ILSEN Alternance
 
 ## Badges
 
