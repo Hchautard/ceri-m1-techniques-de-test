@@ -10,11 +10,18 @@ public class IPokemonFactoryTest {
 
     private IPokemonFactory pokemonFactory;
 
+    /**
+     * Initializes the unit test by creating a mock object of the IPokemonFactory interface.
+     */
     @BeforeEach
     public void setUp() {
         pokemonFactory = mock(IPokemonFactory.class);
     }
 
+    /**
+     * Tests the creation of a Pokemon with valid data using the mocked IPokemonFactory.
+     * Verifies that the created Pokemon is not null and that its properties match the expected values.
+     */
     @Test
     public void testCreatePokemon() {
         int index = 1;
@@ -39,6 +46,10 @@ public class IPokemonFactoryTest {
         assertEquals(candy, createdPokemon.getCandy(), "Les bonbons ne correspondent pas");
     }
 
+    /**
+     * Tests the creation of a Pokemon with invalid data using the mocked IPokemonFactory.
+     * Verifies that an IllegalArgumentException is thrown when creating a Pokemon with invalid data.
+     */
     @Test
     public void testCreatePokemon_invalidData() {
         int index = -1; 
@@ -55,6 +66,10 @@ public class IPokemonFactoryTest {
         });
     }
     
+    /**
+     * Tests the creation of a Pokemon with max values using the mocked IPokemonFactory.
+     * Verifies that the Pokemon is created correctly with the max values.
+     */
     @Test
     public void testCreatePokemon_maxValues() {
         int index = 150;
@@ -79,6 +94,10 @@ public class IPokemonFactoryTest {
         assertEquals(candy, createdPokemon.getCandy(), "Les bonbons ne correspondent pas");
     }
     
+    /**
+     * Tests the creation of a Pokemon with zero values using the mocked IPokemonFactory.
+     * Verifies that the Pokemon is created correctly with the zero values.
+     */
     @Test
     public void testCreatePokemon_zeroValues() {
         int index = 10;
@@ -104,6 +123,10 @@ public class IPokemonFactoryTest {
     }
 
     
+    /**
+     * Tests the creation of a Pokemon with an index of 0 using the mocked IPokemonFactory.
+     * Verifies that the Pokemon is created correctly with the index of 0.
+     */
     @Test
     public void testCreatePokemon_indexZero() {
         int index = 0;
@@ -128,6 +151,10 @@ public class IPokemonFactoryTest {
         assertEquals(candy, createdPokemon.getCandy(), "Les bonbons ne correspondent pas");
     }
 
+    /**
+     * Tests the creation of a Pokemon with all values the same using the mocked IPokemonFactory.
+     * Verifies that the Pokemon is created correctly with the same values.
+     */
     @Test
     public void testCreatePokemon_sameValues() {
         int index = 25;
@@ -152,6 +179,10 @@ public class IPokemonFactoryTest {
         assertEquals(candy, createdPokemon.getCandy(), "Les bonbons ne correspondent pas");
     }
 
+    /**
+     * Tests the creation of a Pokemon with a null name using the mocked IPokemonFactory.
+     * Verifies that the Pokemon is created correctly with the null name.
+     */
     @Test
     public void testCreatePokemon_nullValues() {
         int index = 10;
@@ -174,8 +205,5 @@ public class IPokemonFactoryTest {
         assertEquals(hp, createdPokemon.getHp(), "Les HP du Pokémon ne correspondent pas");
     }
     
-    
-
-
 }
 	
