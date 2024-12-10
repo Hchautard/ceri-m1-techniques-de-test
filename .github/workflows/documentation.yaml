@@ -25,5 +25,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.DOC_TOKEN }}
-          publish_dir: ./target/reports/apidocs  # Path to the generated Javadoc
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/site/apidocs  # Path to the generated Javadoc
