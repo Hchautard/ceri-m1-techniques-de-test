@@ -79,3 +79,6 @@ Solution : Remplacer par Random().nextInt(101).
 Cause : Les Pokémon avec un index non mappé deviennent MISSINGNO.
 Impact : Tous les Pokémon non référencés dans index2name sont identifiés comme MISSINGNO.
 Solution : Ajouter plus de Pokémon à la carte index2name.
+
+Par rapport aux tests effectués sur cette classe, il y a des erreurs lors de la création de nouveau Pokemon.
+Cela veut dire que pour le prochain développeur a travaillé sur ce code, il aura pas mal de tests à corriger de par la mauvaise implémentation.
