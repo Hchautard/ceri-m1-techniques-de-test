@@ -31,8 +31,8 @@ jobs:
           command: mvn checkstyle:checkstyle
 
       - store_artifacts:
-             path: target/site
-             destination: checkstyle-report
+             path: target/checkstyle-report.xml
+             destination: checkstyle-reports
 
 workflows:
   version: 2
