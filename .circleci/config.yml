@@ -28,11 +28,15 @@ jobs:
 
       - run:
           name: Run Checkstyle
-          command: mvn checkstyle:checkstyle
+          command: mvn -U -e checkstyle:check
 
       - store_artifacts:
-             path: ./target/site/checkstyle-report.xml
-             destination: checkstyle-reports
+          path: ./target/site/checkstyle-result.xml
+          destination: checkstyle-reports
+
+      - store_artifacts:
+          path: ./target/site/checkstyle.html
+          destination: checkstyle-reports
 
 workflows:
   version: 2
