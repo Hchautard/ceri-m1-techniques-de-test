@@ -64,3 +64,18 @@ Nous avons utilisé les technologies suivantes :
 ## Choix techniques
 
 Ce projet adopte une approche de développement dirigée par les tests (TDD) pour assurer que chaque fonctionnalité est couverte par des tests dès sa conception. Nous utilisons Mockito pour simuler les dépendances et tester chaque composant indépendamment.
+
+## le TP6
+
+Dans ce TP, nous implémentons la classe RocketPokemonFactory que la très sympathique Team Rocket nous a donné.
+La classe RocketPokemonFactory est fonctionnelle, mais elle comporte plusieurs problèmes de performance, erreurs de gestion des indices et manque de robustesse.
+
+### Problème de performance
+Cause : La méthode generateRandomStat() effectue 1 000 000 d'itérations.
+Impact : Ralentit significativement la création des Pokémon.
+Solution : Remplacer par Random().nextInt(101).
+
+### Problème de gestion des Pokémon inconnus
+Cause : Les Pokémon avec un index non mappé deviennent MISSINGNO.
+Impact : Tous les Pokémon non référencés dans index2name sont identifiés comme MISSINGNO.
+Solution : Ajouter plus de Pokémon à la carte index2name.

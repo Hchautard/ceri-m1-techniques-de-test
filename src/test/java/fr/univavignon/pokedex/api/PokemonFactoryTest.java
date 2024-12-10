@@ -184,42 +184,25 @@ public class PokemonFactoryTest {
         assertEquals(dust, createdPokemon.getDust());
         assertEquals(candy, createdPokemon.getCandy());
     }
-
+    
     @Test
-    public void testRandomStatGenerationRange() {
-        int stat = RocketPokemonFactory.generateRandomStat();
-        assertTrue(stat >= 0 && stat <= 100, "The random stat should be in range 0-100.");
+    public void testIncorrectAshPikachuIndex_Fail() {
+        Pokemon p = rocketFactory.createPokemon(-2, 100, 50, 200, 10);
+        assertEquals("Ash's Pikachu", p.getName()); // Faux, seul index = -1 correspond à Ash's Pikachu
+    }
+    
+    @Test
+    public void testIncorrectIV_Fail() {
+        Pokemon p = rocketFactory.createPokemon(1, 500, 50, 2000, 2);
+        assertEquals(0.5, p.getIv()); // Faux, l'IV est de 1.0 dans le code actuel
     }
 
     @Test
-    public void testUnmodifiableMapInRocketFactory() {
-        assertThrows(UnsupportedOperationException.class, () -> {
-            RocketPokemonFactory.index2name.put(100, "New Pokemon");
-        });
-    }
-
-    @Test
-    public void testMultipleRandomStatsAreDifferent() {
-        int stat1 = RocketPokemonFactory.generateRandomStat();
-        int stat2 = RocketPokemonFactory.generateRandomStat();
-        assertNotEquals(stat1, stat2, "Two random stats should be different.");
-    }
-
-    @Test
-    public void testRocketCreatePokemonWithZeroStats() {
-        int index = 1;
-        int cp = 0;
-        int hp = 0;
-        int dust = 0;
-        int candy = 0;
-
-        Pokemon createdPokemon = rocketFactory.createPokemon(index, cp, hp, dust, candy);
-
-        assertNotNull(createdPokemon);
-        assertEquals(cp, createdPokemon.getCp());
-        assertEquals(hp, createdPokemon.getHp());
-        assertEquals(dust, createdPokemon.getDust());
-        assertEquals(candy, createdPokemon.getCandy());
+    public void testPokemonStatsOutOfRange_Fail() {
+        Pokemon p = rocketFactory.createPokemon(1, 500, 50, 2000, 2);
+        assertTrue(p.getAttack() <= 50); // Faux, car l'attaque peut être de 0 à 100
+        assertTrue(p.getDefense() <= 50); // Faux, car la défense peut être de 0 à 100
+        assertTrue(p.getStamina() <= 50); // Faux, car l'endurance peut être de 0 à 100
     }
 
 }
